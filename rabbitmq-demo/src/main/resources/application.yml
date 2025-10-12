@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: rabbitmq-workshop-demo
+  
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin123
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 1000
+          max-attempts: 3
+          multiplier: 2.0
+          max-interval: 10000
+        default-requeue-rejected: false
+        acknowledge-mode: manual
+        prefetch: 1
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+
+# Workshop configuration
+workshop:
+  rabbitmq:
+    exchange: workshop-exchange
+    queue: workshop-queue
+    dlq: workshop-dlq
+    routing-key: workshop.message
+    dlq-routing-key: workshop.dlq
+    simulate-failures: false
+    failure-rate: 0.1
+
+logging:
+  level:
+    com.workshop: INFO
+    org.springframework.amqp: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
