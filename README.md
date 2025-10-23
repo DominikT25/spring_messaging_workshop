@@ -558,7 +558,7 @@ Gratulujeme! Dokončili jste Spring Boot Messaging Workshop. Nyní byste měli r
 
 ---
 
-**Autor:** Manus AI  
+**Autor:**   
 **Verze:** 1.0  
 **Datum:** 2025
 
