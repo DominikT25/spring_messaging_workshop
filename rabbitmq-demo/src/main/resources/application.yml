@@ -30,9 +30,6 @@ management:
   metrics:
     export:
       prometheus:
-        enabled: true
-    tags:
-      application: ${spring.application.name}
 
 # Workshop configuration
 workshop:
